@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:resume_app/data/sharedpreferences/preferences.dart';
+import 'package:resume_app/di/dependency_injection.dart';
 import 'package:resume_app/presentation/apptheme/app_theme.dart';
 import 'package:resume_app/presentation/mainpage/ui/mainpage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Preferences.init();
+  await initGetIt();
   runApp(const MyApp());
 }
 

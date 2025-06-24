@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+import 'package:resume_app/domain/exceptions/Failure.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Preferences {
@@ -14,9 +16,14 @@ class Preferences {
     return _prefs.getBool('isDarkmode') ?? _isDarkmode;
   }
 
-  static set isDarkmode(bool darkmode){
-    _isDarkmode = darkmode;
-    _prefs.setBool('isDarkmode', darkmode);
+  static Future<Either<Failure, bool>> setDarkMode(bool darkmode) async {
+    try{
+      _isDarkmode = darkmode;
+      _prefs.setBool('isDarkmode', darkmode);
+      return Right(darkmode);
+    }
+    catch(e){
+      return Left(DataSourceException((e.toString())));
+    }
   }
-  
 }
