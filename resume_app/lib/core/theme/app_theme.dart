@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:resume_app/core/theme/app_colors.dart';
+
+import 'package:flutter/material.dart';
 
 class AppColors {
   // dark
@@ -9,24 +12,29 @@ class AppColors {
   static const Color color5Dark = Color(0xFFC2C4E5);
 
   // light
-  static const Color color1Light = Color.fromARGB(255, 31, 124, 152);
-  static const Color color2Light = Color.fromARGB(255, 162, 214, 226);
-  static const Color color3Light = Color.fromARGB(255, 239, 244, 245);
-  static const Color color4Light = Color.fromARGB(255, 252, 232, 166);
-  static const Color color5Light = Color.fromARGB(255, 251, 175, 24);
+  static const Color color1Light = Colors.white;
+  static const Color color2Light = Colors.grey;
+  static const Color color3Light = Colors.blueGrey;
+  static const Color color4Light = Colors.blueAccent;
+  static const Color color5Light = Colors.black;
 
   static ThemeData darkTheme() {
     return ThemeData(
       colorScheme: ColorScheme(
         brightness: Brightness.dark,
-        primary: color3Dark, 
-        onPrimary: color5Dark,
-        secondary: color2Dark,
-        onSecondary: color5Dark,
+        primary: color3Dark, // Color principal
+        onPrimary: Colors.white,
+        secondary: color4Dark,
+        onSecondary: Colors.white,
         error: Colors.red,
-        onError: color5Dark,
+        onError: Colors.white,
         surface: color1Dark,
         onSurface: color5Dark,
+      ),
+      scaffoldBackgroundColor: color1Dark,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: color2Dark,
+        foregroundColor: Colors.white,
       ),
     );
   }

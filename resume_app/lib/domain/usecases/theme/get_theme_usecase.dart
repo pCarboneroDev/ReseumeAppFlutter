@@ -1,0 +1,16 @@
+import 'package:dartz/dartz.dart';
+import 'package:resume_app/domain/entities/theme_entity.dart';
+import 'package:resume_app/domain/exceptions/Failure.dart';
+import 'package:resume_app/domain/repositories/theme_repository.dart';
+import 'package:resume_app/domain/usecases/usecase.dart';
+
+class GetThemeUsecase implements UseCase<void, ThemeEntity> {
+  final ThemeRepository repo;
+
+  GetThemeUsecase({required this.repo});
+
+  @override
+  Future<Either<Failure, ThemeEntity>> call(params) {
+    return repo.getTheme();
+  }
+}
