@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resume_app/presentation/aboutme/about_me_page.dart';
+import 'package:resume_app/presentation/contact/ui/contact_page.dart';
+import 'package:resume_app/presentation/experience/ui/experience_page.dart';
 import 'package:resume_app/presentation/projects/ui/projects_page.dart';
 import 'package:resume_app/presentation/settings/settings_page.dart';
 
@@ -18,7 +20,7 @@ class _MainpageState extends State<Mainpage> {
   @override
   Widget build(BuildContext context) {
 
-    final List<Widget> screens = [AboutMePage(), AboutMePage(), ProjectsPage(), AboutMePage(), SettingsPage()];
+    final List<Widget> screens = [AboutMePage(), ExperiencePage(), ProjectsPage(), ContactPage(), SettingsPage()];
 
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(

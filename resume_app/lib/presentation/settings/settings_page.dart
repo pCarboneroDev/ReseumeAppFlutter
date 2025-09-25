@@ -25,6 +25,9 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Settings'),
+      ),
       body: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, state) {
           final statusW = <UIStatus, Widget>{
@@ -34,7 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
             UIStatus.success: Center(
               child: MaterialButton(
                 shape: StadiumBorder(),
-                color: Colors.blueAccent,
+                color: ColorScheme.of(context).primaryContainer,
                 onPressed: () {
                   final settingsBloc = BlocProvider.of<SettingsBloc>(context);
                   settingsBloc.add(ToggleThemeEvent());

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:resume_app/domain/entities/theme_entity.dart';
-import 'package:resume_app/domain/exceptions/Failure.dart';
+import 'package:resume_app/domain/exceptions/failure.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesDatasource {

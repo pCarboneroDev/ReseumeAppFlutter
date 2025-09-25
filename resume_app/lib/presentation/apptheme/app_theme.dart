@@ -9,11 +9,11 @@ class AppColors {
   static const Color color5Dark = Color(0xFFC2C4E5);
 
   // light
-  static const Color color1Light = Color.fromARGB(255, 31, 124, 152);
+  static const Color color1Light = Color.fromARGB(255, 252, 248, 255);
   static const Color color2Light = Color.fromARGB(255, 162, 214, 226);
-  static const Color color3Light = Color.fromARGB(255, 239, 244, 245);
-  static const Color color4Light = Color.fromARGB(255, 252, 232, 166);
-  static const Color color5Light = Color.fromARGB(255, 251, 175, 24);
+  static const Color color3Light = Color.fromARGB(255, 89, 89, 146);
+  static const Color color4Light = Color.fromARGB(255, 93, 92, 113);
+  static const Color color5Light = Color.fromARGB(255, 14, 5, 100);
 
   static ThemeData darkTheme() {
     return ThemeData(
@@ -42,7 +42,8 @@ class AppTheme {
       colorScheme: ColorScheme(
         brightness: Brightness.light,
         primary: AppColors.color3Light,
-        onPrimary: Colors.black,
+        primaryContainer: Color.fromARGB(255, 226, 223, 255),
+        onPrimary: Colors.white,
         secondary: AppColors.color4Light,
         onSecondary: Colors.black,
         error: Colors.red,

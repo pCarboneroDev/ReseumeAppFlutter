@@ -1,8 +1,5 @@
 part of 'projects_bloc.dart';
 
-sealed class ProjectsEvent extends Equatable {
-  const ProjectsEvent();
+abstract class ProjectsEvent {}
 
-  @override
-  List<Object> get props => [];
-}
+class OnLoadProjects extends ProjectsEvent {}
