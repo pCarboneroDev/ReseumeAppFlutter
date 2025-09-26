@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:resume_app/data/sharedpreferences/preferences_datasource.dart';
+import 'package:resume_app/domain/entities/no_params.dart';
 import 'package:resume_app/domain/entities/theme_entity.dart';
 import 'package:resume_app/domain/usecases/theme/get_theme_usecase.dart';
 import 'package:resume_app/domain/usecases/theme/save_theme_usecase.dart';
@@ -17,7 +17,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   SettingsBloc(
     this.getThemeUsecase,
     this.saveThemeUsecase
-  ) : super(SettingsState(state: UIState.idle(), themeEntity: ThemeEntity(theme: ThemeType.light))) {
+  ) : super(SettingsState(uiState: UIState.idle(), themeEntity: ThemeEntity(theme: ThemeType.light))) {
 
     on<SettingsEvent>((event, emit) {
       // TODO: implement event handler
@@ -25,6 +25,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
 
     on<GetThemeEvent>((event, emit) async {
+      emit(state.copyWith(state: UIState.loading()));
+      
       var result = await getThemeUsecase.call(NoParams());
 
       result.fold(

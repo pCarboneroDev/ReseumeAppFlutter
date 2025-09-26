@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:resume_app/data/sharedpreferences/preferences_datasource.dart';
+import 'package:resume_app/domain/entities/no_params.dart';
 import 'package:resume_app/domain/entities/project_model.dart';
 import 'package:resume_app/domain/usecases/projects/get_all_projects_usecase.dart';
 import 'package:resume_app/utils/ui_state.dart';

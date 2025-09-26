@@ -30,7 +30,6 @@ class ApiDatasource {
       }
     }
     catch (error) {
-      print(error.toString());
       return Left(DataSourceException(error.toString()));
     }
   }

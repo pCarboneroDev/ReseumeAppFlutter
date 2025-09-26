@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resume_app/domain/entities/project_model.dart';
+import 'package:resume_app/l10n/app_localizations.dart';
 import 'package:resume_app/presentation/projects/bloc/projects_bloc.dart';
 import 'package:resume_app/utils/ui_state.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -48,7 +49,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Projects'),
+        title: Text(AppLocalizations.of(context)!.projectsTitle), //AppLocalizations.of(context)!.projectsTitle
       ),
       body: BlocBuilder<ProjectsBloc, ProjectsState>(
         builder: (context, state) {

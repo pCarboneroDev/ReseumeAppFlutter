@@ -47,7 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
             )
           };
 
-          return statusW[state.state.status] ?? Container(); 
+          return statusW[state.uiState.status] ?? Container(); 
         },
       )
    );

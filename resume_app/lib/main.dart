@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:resume_app/di/dependency_injection.dart';
 import 'package:resume_app/domain/entities/theme_entity.dart';
+import 'package:resume_app/l10n/app_localizations.dart';
 import 'package:resume_app/presentation/apptheme/app_theme.dart';
 import 'package:resume_app/presentation/mainpage/ui/mainpage.dart';
 import 'package:resume_app/presentation/projects/bloc/projects_bloc.dart';
 import 'package:resume_app/presentation/settings/bloc/settings_bloc.dart';
+import 'package:resume_app/presentation/splash/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +18,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<SettingsBloc>()..add(GetThemeEvent()),
+          create: (context) => getIt<SettingsBloc>()/*..add(GetThemeEvent())*/,
         ),
         BlocProvider(
           create: (context) => getIt<ProjectsBloc>(),
@@ -39,7 +42,6 @@ class MyApp extends StatelessWidget {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
 
             if (!snapshot.hasData) {
-              // Mostrar pantalla de carga mientras se resuelve el tema
               return const Center(child: CircularProgressIndicator());
             }
 
@@ -47,10 +49,21 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'ResumeApp',
               theme: snapshot.data,
+              localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: [
+                Locale('en'),
+                Locale('es')
+              ],
               routes: {
-                "home": (context) => Mainpage()
+                "home": (context) => Mainpage(),
+                "splash": (context) => SplashScreenPage()
               },
-              initialRoute: "home",
+              initialRoute: "splash",
             );
           },
         );
