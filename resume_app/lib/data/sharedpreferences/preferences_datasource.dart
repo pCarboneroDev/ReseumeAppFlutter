@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dartz/dartz.dart';
 import 'package:resume_app/domain/entities/no_params.dart';
 import 'package:resume_app/domain/entities/theme_entity.dart';
@@ -37,9 +39,9 @@ class PreferencesDatasource {
   } 
 
 
-  Future<Either<Failure, void>> saveLanguage(String langCode) async {
+  Future<Either<Failure, void>> saveLanguage(Locale locale) async {
     try {
-      await preferences.setString('language_key', langCode);  
+      await preferences.setString('language_key', locale.languageCode);  
       //print(preferences.getString('language_key'));
       return Right(NoParams());
     }
@@ -49,14 +51,14 @@ class PreferencesDatasource {
   }
 
 
-  Future<Either<Failure, String>> getLanguage() async {
+  Future<Either<Failure, Locale>> getLanguage() async {
     try {
       var langValue = preferences.getString('language_key');
       if (langValue != null){
-        return Right(langValue);
+        return Right(Locale(langValue));
       }
       else{
-        return Right('en');
+        return Right(Locale('en'));
       }
     }
     catch(e){

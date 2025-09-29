@@ -12,7 +12,7 @@ class SplashScreenPage extends StatefulWidget {
 class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
-    BlocProvider.of<SettingsBloc>(context).add(GetThemeEvent());
+    BlocProvider.of<SettingsBloc>(context).add(LoadSettingdEvent());
     super.initState();
   }
 

@@ -24,6 +24,8 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final settingsBloc = BlocProvider.of<SettingsBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -35,14 +37,32 @@ class _SettingsPageState extends State<SettingsPage> {
             UIStatus.loading: Center(child: CircularProgressIndicator.adaptive()),
 
             UIStatus.success: Center(
-              child: MaterialButton(
-                shape: StadiumBorder(),
-                color: ColorScheme.of(context).primaryContainer,
-                onPressed: () {
-                  final settingsBloc = BlocProvider.of<SettingsBloc>(context);
-                  settingsBloc.add(ToggleThemeEvent());
-                },
-                child: Text("Change DarkMode"),
+              child: Column(
+                children: [
+                  // theme button
+                  MaterialButton(
+                    shape: StadiumBorder(),
+                    color: ColorScheme.of(context).primaryContainer,
+                    onPressed: () {              
+                      settingsBloc.add(ToggleThemeEvent());
+                    },
+                    child: Text("Change DarkMode"),
+                  ),
+
+                  // lang dropdown
+                  DropdownButton(
+                    value: state.locale,
+                    items: [
+                      DropdownMenuItem(value: Locale('en'), child: Text('English')),
+                      DropdownMenuItem(value: Locale('es'), child: Text('Español'))
+                    ], 
+                    onChanged: (value) {
+                      if (value != null){
+                        settingsBloc.add(ChangeLocaleEvent(value));
+                      }
+                    },
+                  )
+                ],
               )
             )
           };

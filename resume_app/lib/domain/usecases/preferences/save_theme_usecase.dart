@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:resume_app/domain/entities/theme_entity.dart';
 import 'package:resume_app/domain/exceptions/failure.dart';
-import 'package:resume_app/domain/repositories/theme_repository.dart';
+import 'package:resume_app/domain/repositories/preferences_repository.dart';
 import 'package:resume_app/domain/usecases/usecase.dart';
 
 class SaveThemeUsecase implements UseCase<ThemeEntity, void> {
-  final ThemeRepository repo;
+  final PreferencesRepository repo;
 
   SaveThemeUsecase({required this.repo});
 

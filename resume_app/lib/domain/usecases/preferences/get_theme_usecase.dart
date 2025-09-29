@@ -1,16 +1,16 @@
 import 'package:dartz/dartz.dart';
+import 'package:resume_app/domain/entities/theme_entity.dart';
 import 'package:resume_app/domain/exceptions/failure.dart';
 import 'package:resume_app/domain/repositories/preferences_repository.dart';
 import 'package:resume_app/domain/usecases/usecase.dart';
 
-class SetDarkModeUsecase extends UseCase<bool, bool>{
+class GetThemeUsecase implements UseCase<void, ThemeEntity> {
   final PreferencesRepository repo;
 
-  SetDarkModeUsecase(this.repo);
+  GetThemeUsecase({required this.repo});
 
   @override
-  Future<Either<Failure, bool>> call(bool params) {
-    return repo.setDarkMode(params);
+  Future<Either<Failure, ThemeEntity>> call(params) {
+    return repo.getTheme();
   }
-
 }
