@@ -27,6 +27,7 @@ class AppColors {
         onError: color5Dark,
         surface: color1Dark,
         onSurface: color5Dark,
+        primaryFixed: const Color.fromARGB(134, 78, 78, 126)
       ),
     );
   }
@@ -50,6 +51,7 @@ class AppTheme {
         onError: Colors.white,
         surface: AppColors.color1Light,
         onSurface: AppColors.color5Light,
+        primaryFixed: Color.fromARGB(166, 226, 223, 255)
       ),
       scaffoldBackgroundColor: AppColors.color1Light,
       appBarTheme: const AppBarTheme(

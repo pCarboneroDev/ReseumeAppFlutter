@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resume_app/domain/entities/theme_entity.dart';
 import 'package:resume_app/l10n/app_localizations.dart';
 import 'package:resume_app/presentation/settings/bloc/settings_bloc.dart';
 import 'package:resume_app/utils/ui_state.dart';
@@ -47,7 +48,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     onPressed: () {              
                       settingsBloc.add(ToggleThemeEvent());
                     },
-                    child: Text("Change DarkMode"),
+                    child: Text((state.themeEntity.theme == ThemeType.dark) ? "Light" : "Dark"),
                   ),
 
                   // lang dropdown

@@ -1,3 +1,4 @@
+import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resume_app/domain/entities/experience_model.dart';
@@ -12,7 +13,7 @@ class ExperiencePage extends StatefulWidget {
   State<ExperiencePage> createState() => _ExperiencePageState();
 }
 
-class _ExperiencePageState extends State<ExperiencePage> {
+class _ExperiencePageState extends State<ExperiencePage> with TickerProviderStateMixin {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -60,25 +61,39 @@ class _ExperiencePageState extends State<ExperiencePage> {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.experienceTitle),
       ),
-      body: BlocBuilder<ExperienceBloc, ExperienceState>(
-        builder: (context, state) {
-          final status = <UIStatus, Widget>{
-            UIStatus.error: Center(child: Text("ERROR")),
-            UIStatus.idle: Center(child: Text("IDLE")),
-            UIStatus.loading: Center(child: CircularProgressIndicator.adaptive()),
-            UIStatus.success: ListView.builder(
-              itemCount: state.experienceList.length,
+      body: AnimatedBackground(
+        vsync: this,
+        behaviour: RandomParticleBehaviour(
+          options: ParticleOptions(
+            spawnMinSpeed: 5,
+            spawnMaxSpeed: 20,
+            spawnMaxRadius: 50,
+            spawnMinRadius: 10,
+            baseColor: ColorScheme.of(context).primary,
+            particleCount: 20
+          )
+        ),
 
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: _ExperienceCard(exp: state.experienceList[index]),
-                );
-              },
-            )
-          };
-          return status[state.uiState.status] ?? Container();
-        }
+        child: BlocBuilder<ExperienceBloc, ExperienceState>(
+          builder: (context, state) {
+            final status = <UIStatus, Widget>{
+              UIStatus.error: Center(child: Text("ERROR")),
+              UIStatus.idle: Center(child: Text("IDLE")),
+              UIStatus.loading: Center(child: CircularProgressIndicator.adaptive()),
+              UIStatus.success: ListView.builder(
+                itemCount: state.experienceList.length,
+        
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: _ExperienceCard(exp: state.experienceList[index]),
+                  );
+                },
+              )
+            };
+            return status[state.uiState.status] ?? Container();
+          }
+        ),
       )
    );
   }
@@ -98,7 +113,7 @@ class _ExperienceCard extends StatelessWidget {
       width: double.infinity,
 
       decoration: BoxDecoration(
-        color: ColorScheme.of(context).primaryContainer,
+        color: ColorScheme.of(context).primaryFixed,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: ColorScheme.of(context).onPrimary,
