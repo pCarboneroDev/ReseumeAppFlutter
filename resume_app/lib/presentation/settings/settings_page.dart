@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resume_app/domain/entities/theme_entity.dart';
 import 'package:resume_app/l10n/app_localizations.dart';
 import 'package:resume_app/presentation/settings/bloc/settings_bloc.dart';
@@ -43,12 +44,13 @@ class _SettingsPageState extends State<SettingsPage> {
                 children: [
                   // theme button
                   MaterialButton(
-                    shape: StadiumBorder(),
+                    shape: CircleBorder(),
+                    height: 100,
                     color: ColorScheme.of(context).primaryContainer,
                     onPressed: () {              
                       settingsBloc.add(ToggleThemeEvent());
                     },
-                    child: Text((state.themeEntity.theme == ThemeType.dark) ? "Light" : "Dark"),
+                    child: Icon((state.themeEntity.theme == ThemeType.dark) ? FontAwesomeIcons.sun : FontAwesomeIcons.moon),
                   ),
 
                   // lang dropdown

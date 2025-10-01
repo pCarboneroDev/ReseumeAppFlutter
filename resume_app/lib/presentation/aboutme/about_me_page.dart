@@ -1,7 +1,11 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resume_app/l10n/app_localizations.dart';
+import 'package:resume_app/presentation/experience/ui/widgets/front_info_card.dart';
+import 'package:resume_app/presentation/experience/ui/widgets/back_info_card.dart';
+import 'package:resume_app/presentation/experience/ui/widgets/image_and_name.dart';
 
 
 class AboutMePage extends StatefulWidget {
@@ -39,25 +43,55 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _ImageAndName(),
-          
+                ImageAndName(),
+
+                SizedBox(
+                  height: 70,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 15,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withValues(alpha: 0.5),
+                              spreadRadius: 3,
+                              blurRadius: 4,
+                              offset: Offset(0, 1), // changes position of shadow
+                            )
+                          ],
+                          color: ColorScheme.of(context).primaryContainer,
+                          borderRadius: BorderRadius.circular(7),
+                          border: BoxBorder.all(color: ColorScheme.of(context).onSurface, width: 2)
+                        ),
+                        child: Center(child: Text("Kotlin", style: TextStyle(fontSize: 25))),
+                      );
+                    },
+                  ),
+                ),
+
+                SizedBox(height: 20),
+
                 GestureFlipCard(
-                  frontWidget: Container(
-                    width: double.infinity,
-                    height: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.amber
-                    ),
-                    child: Text("Front")
+                  frontWidget: FrontInfoCard(
+                    title: "Get to know me",
+                    icon: FontAwesomeIcons.person,
                   ), 
-                  backWidget: Container(
-                    width: double.infinity,
-                    height: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent
-                    ),
-                    child: Text("Back")
+                  backWidget: BackInfoCard(), 
+                  controller: controller
+                ),
+
+                SizedBox(height: 10),
+
+                GestureFlipCard(
+                  frontWidget: FrontInfoCard(
+                    title: "My hobbies",
+                    icon: FontAwesomeIcons.person,
                   ), 
+                  backWidget: BackInfoCard(), 
                   controller: controller
                 ),
                 
@@ -75,24 +109,4 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
   }
 }
 
-class _ImageAndName extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 200,
-      //color: Colors.red,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            foregroundImage: NetworkImage('https://pcarbonerodev.github.io/Carbonero-WebPortfolio/assets/images/profile.png'),
-            radius: 75,
-          ),
-          SizedBox(width: 10),
-          Expanded(child: Text("Pablo Carbonero Almellones", style: TextStyle(fontSize: 30, overflow: TextOverflow.visible)))
-        ],
-      ),
-    );
-  }
-}
+
