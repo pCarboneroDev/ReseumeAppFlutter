@@ -17,8 +17,14 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
   @override
   void initState() {
-    BlocProvider.of<ProjectsBloc>(context).add(OnLoadProjects());
+    
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    BlocProvider.of<ProjectsBloc>(context).add(OnLoadProjects(Localizations.localeOf(context).languageCode));
   }
 
   final List<ProjectModel> projectList = [

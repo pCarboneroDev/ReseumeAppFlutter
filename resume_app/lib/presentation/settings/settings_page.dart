@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resume_app/l10n/app_localizations.dart';
 import 'package:resume_app/presentation/settings/bloc/settings_bloc.dart';
 import 'package:resume_app/utils/ui_state.dart';
 
@@ -28,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: Text(AppLocalizations.of(context)!.settingsTitle),
       ),
       body: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, state) {

@@ -10,4 +10,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get projectsTitle => 'Proyectos';
+
+  @override
+  String get aboutTitle => 'Sobre mí';
+
+  @override
+  String get experienceTitle => 'Experiencia';
+
+  @override
+  String get contactTitle => 'Contacto';
+
+  @override
+  String get settingsTitle => 'Ajustes';
 }

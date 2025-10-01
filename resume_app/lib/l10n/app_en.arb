@@ -3,5 +3,21 @@
   "projectsTitle": "Projects",
   "@projectsTitle": {
     "type": "text"
+  },
+  "aboutTitle": "About me",
+  "@aboutTitle": {
+    "type": "text"
+  },
+  "experienceTitle": "Experience",
+  "@experienceTitle": {
+    "type": "text"
+  },
+  "contactTitle": "Contact",
+  "@contactTitle": {
+    "type": "text"
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "type": "text"
   }
 }

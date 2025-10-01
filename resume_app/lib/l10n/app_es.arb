@@ -1,4 +1,8 @@
 {
     "@@locale": "es",
-    "projectsTitle": "Proyectos"
+    "projectsTitle": "Proyectos",
+    "aboutTitle": "Sobre mí",
+    "experienceTitle": "Experiencia",
+    "contactTitle": "Contacto",
+    "settingsTitle": "Ajustes"
 }

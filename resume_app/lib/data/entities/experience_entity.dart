@@ -28,7 +28,7 @@ class ExperienceEntity {
     role: json["role"] ?? "",
     date: json["date"] ?? "",
     location: json["location"] ?? "",
-    description: json["description"] ?? "",
+    description: (json["description"] as List<dynamic>?)?.map((item) => item.toString()).toList() ?? [],
     companyLogo: json["companyLogo"] ?? ""
   );
 

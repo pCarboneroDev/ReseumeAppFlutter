@@ -103,6 +103,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Projects'**
   String get projectsTitle;
+
+  /// No description provided for @aboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About me'**
+  String get aboutTitle;
+
+  /// No description provided for @experienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Experience'**
+  String get experienceTitle;
+
+  /// No description provided for @contactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get contactTitle;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
 }
 
 class _AppLocalizationsDelegate

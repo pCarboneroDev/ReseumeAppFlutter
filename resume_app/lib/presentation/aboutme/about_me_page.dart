@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume_app/l10n/app_localizations.dart';
 
 
 class AboutMePage extends StatelessWidget {
@@ -7,7 +8,7 @@ class AboutMePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("About me"),
+        title: Text(AppLocalizations.of(context)!.aboutTitle),
         backgroundColor: ColorScheme.of(context).secondary,
       ),
       body: Padding(

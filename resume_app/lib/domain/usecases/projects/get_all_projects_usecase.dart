@@ -4,7 +4,7 @@ import 'package:resume_app/domain/exceptions/failure.dart';
 import 'package:resume_app/domain/repositories/projects_repository.dart';
 import 'package:resume_app/domain/usecases/usecase.dart';
 
-class GetAllProjectsUsecase implements UseCase<void, List<ProjectModel>> {
+class GetAllProjectsUsecase implements UseCase<String, List<ProjectModel>> {
 
   final ProjectsRepository repo;
 
@@ -12,7 +12,7 @@ class GetAllProjectsUsecase implements UseCase<void, List<ProjectModel>> {
 
 
   @override
-  Future<Either<Failure, List<ProjectModel>>> call(void params) {
-    return repo.getAllProjects();
+  Future<Either<Failure, List<ProjectModel>>> call(params) {
+    return repo.getAllProjects(params);
   }
 }

@@ -12,9 +12,11 @@ class ApiDatasource {
   static final String projectsEndpoint = 'projects';  
   static final String experienceEndpoint = 'experience';
 
-  static Future<Either<Failure, List<ProjectModel>>> getAllProjects() async {
+  static Future<Either<Failure, List<ProjectModel>>> getAllProjects(lang) async {
     try {
-      final uri = Uri.http(apiUrl, projectsEndpoint);
+      final uri = Uri.http(apiUrl, projectsEndpoint, {
+        "lang": lang
+      });
 
       var response = await http.get(uri); 
 
@@ -39,7 +41,9 @@ class ApiDatasource {
 
   static Future<Either<Failure, List<ExperienceModel>>> getAllExperience(lang) async {
     try{
-      final uri = Uri.http(apiUrl, projectsEndpoint);
+      final uri = Uri.http(apiUrl, experienceEndpoint, {
+        "lang": lang
+      });
 
       var response = await http.get(uri); 
 
@@ -57,7 +61,7 @@ class ApiDatasource {
       }
     }
     catch(error){
-      return Left(DataSourceException("error"));
+      return Left(DataSourceException(error.toString()));
     } 
   }
 }

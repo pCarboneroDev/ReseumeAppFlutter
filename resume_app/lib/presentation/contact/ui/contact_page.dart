@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resume_app/domain/entities/contact_model.dart';
+import 'package:resume_app/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -31,7 +32,7 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contact')
+        title: Text(AppLocalizations.of(context)!.contactTitle)
       ),
       body: ListView.builder(
         itemCount: contactList.length,

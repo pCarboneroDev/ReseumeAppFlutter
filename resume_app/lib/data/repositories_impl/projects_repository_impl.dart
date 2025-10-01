@@ -6,7 +6,7 @@ import 'package:resume_app/domain/repositories/projects_repository.dart';
 
 class ProjectsRepositoryImpl implements ProjectsRepository {
   @override
-  Future<Either<Failure, List<ProjectModel>>> getAllProjects() async {
-    return await ApiDatasource.getAllProjects();
+  Future<Either<Failure, List<ProjectModel>>> getAllProjects(lang) async {
+    return await ApiDatasource.getAllProjects(lang);
   }
 }

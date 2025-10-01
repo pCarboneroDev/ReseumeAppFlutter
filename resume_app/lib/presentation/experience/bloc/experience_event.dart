@@ -1,8 +1,8 @@
 part of 'experience_bloc.dart';
 
-sealed class ExperienceEvent extends Equatable {
-  const ExperienceEvent();
+abstract class ExperienceEvent {}
 
-  @override
-  List<Object> get props => [];
+class GetAllExperienceEvent extends ExperienceEvent {
+  final String lang;
+  GetAllExperienceEvent(this.lang);
 }
