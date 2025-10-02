@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:resume_app/l10n/app_localizations.dart';
 import 'package:resume_app/presentation/aboutme/about_me_page.dart';
 import 'package:resume_app/presentation/contact/ui/contact_page.dart';
 import 'package:resume_app/presentation/experience/ui/experience_page.dart';
@@ -35,11 +36,11 @@ class _MainpageState extends State<Mainpage> {
         },
         currentIndex: selectedIndex,
         items: [
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.person), label: 'About me'),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.newspaper), label: 'Experience'),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.book), label: 'Projects'),
-          BottomNavigationBarItem(icon: Icon(Icons.email), label: 'Contact'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'App Settings'),
+        BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.person), label: AppLocalizations.of(context)!.aboutTitle),
+          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.newspaper), label: AppLocalizations.of(context)!.experienceTitle),
+          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.book), label: AppLocalizations.of(context)!.projectsTitle),
+          BottomNavigationBarItem(icon: Icon(Icons.email), label: AppLocalizations.of(context)!.contactTitle),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: AppLocalizations.of(context)!.settingsTitle),
         ]
       ),
       body: Center(child: screens[selectedIndex]),

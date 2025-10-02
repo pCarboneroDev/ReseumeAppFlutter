@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resume_app/l10n/app_localizations.dart';
-import 'package:resume_app/presentation/experience/ui/widgets/front_info_card.dart';
-import 'package:resume_app/presentation/experience/ui/widgets/back_info_card.dart';
-import 'package:resume_app/presentation/experience/ui/widgets/image_and_name.dart';
+import 'package:resume_app/presentation/aboutme/widgets/front_info_card.dart';
+import 'package:resume_app/presentation/aboutme/widgets/back_info_card.dart';
+import 'package:resume_app/presentation/aboutme/widgets/image_and_name.dart';
 
 
 class AboutMePage extends StatefulWidget {
@@ -15,14 +15,16 @@ class AboutMePage extends StatefulWidget {
 }
 
 class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin {
+  final String presentation = '''
+I am a Software Developer specialised in Android and cross-platform app development, with expertise in Flutter, Jetpack Compose, and .NET frameworks. Experienced with both front-end and back-end sides of an application. Additionally, I have extensive knowledge of a wide range of programming languages and technologies, enabling me to work in nearly all areas of software development.
+''';
   @override
   Widget build(BuildContext context) {
     final controller = GestureFlipCardController();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.aboutTitle),
-        backgroundColor: ColorScheme.of(context).secondary,
+        title: Text(AppLocalizations.of(context)!.aboutTitle)
       ),
       body: AnimatedBackground(
         vsync: this,
@@ -75,6 +77,23 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
 
                 SizedBox(height: 20),
 
+                MaterialButton(
+                  color: ColorScheme.of(context).primaryContainer,
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context, 
+                      showDragHandle: true,
+                      builder: (context) {
+                        return _AboutMeModal(presentation: presentation);
+                      },
+                    );
+                  },
+                  shape: StadiumBorder(),
+                  child: Text("Read something about me!"),
+                ),
+
+                SizedBox(height: 20),
+
                 GestureFlipCard(
                   frontWidget: FrontInfoCard(
                     title: "Get to know me",
@@ -93,12 +112,6 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
                   ), 
                   backWidget: BackInfoCard(), 
                   controller: controller
-                ),
-                
-                Text(
-                  "Cupidatat ad aliquip non occaecat et magna ea cillum mollit anim sunt quis proident. Ullamco ut duis duis ex fugiat commodo culpa sit ea sunt minim. Enim do dolor fugiat deserunt veniam commodo pariatur ipsum ipsum ad aliqua consectetur quis. Consequat incididunt culpa minim Lorem veniam adipisicing duis enim eu.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20),
                 )
               ],
             ),
@@ -106,6 +119,33 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
         ),
       )
    );
+  }
+}
+
+class _AboutMeModal extends StatelessWidget {
+  const _AboutMeModal({
+    required this.presentation,
+  });
+
+  final String presentation;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(14),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Hello, I am", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: ColorScheme.of(context).primary)),
+            Text("Pablo Carbonero Almellones", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+            Text("Software developer", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: ColorScheme.of(context).primary)),
+            SizedBox(height: 20),
+            Text(presentation, style: TextStyle(fontSize: 20))
+          ],
+        ),
+      ),
+    );
   }
 }
 

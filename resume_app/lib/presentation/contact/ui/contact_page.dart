@@ -25,6 +25,12 @@ class ContactPage extends StatelessWidget {
       contactDesc: 'View my LinkedIn profile',
       imageUrl: 'https://pcarbonerodev.github.io/Carbonero-WebPortfolio/assets/images/lnlogo.png',
       targetUrl: 'https://www.linkedin.com/in/pablo-carbonero-almellones-2b63a422b'
+    ),
+    ContactModel(
+      contactName: "Tlfn number", 
+      contactDesc: 'Call me or send me a message!',
+      imageUrl: 'https://pcarbonerodev.github.io/Carbonero-WebPortfolio/assets/images/lnlogo.png',
+      targetUrl: 'tel:+34667291647'
     )
   ];
 

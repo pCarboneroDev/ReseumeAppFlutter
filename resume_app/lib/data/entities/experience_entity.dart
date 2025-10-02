@@ -24,7 +24,7 @@ class ExperienceEntity {
   String toJson() => json.encode(toMap());
 
   factory ExperienceEntity.fromMap(Map<String, dynamic> json) => ExperienceEntity(
-    companyName: json["name"] ?? "",
+    companyName: json["companyName"] ?? "",
     role: json["role"] ?? "",
     date: json["date"] ?? "",
     location: json["location"] ?? "",

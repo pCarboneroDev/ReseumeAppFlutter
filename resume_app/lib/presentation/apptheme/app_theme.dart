@@ -29,6 +29,9 @@ class AppColors {
         onSurface: color5Dark,
         primaryFixed: const Color.fromARGB(134, 78, 78, 126)
       ),
+      appBarTheme: const AppBarTheme(
+        color: Colors.transparent,
+      )
     );
   }
 }
@@ -57,7 +60,7 @@ class AppTheme {
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-      ),
+      )
     );
   }
 }

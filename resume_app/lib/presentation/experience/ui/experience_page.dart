@@ -108,7 +108,46 @@ class _ExperienceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ExpansionTile(
+      backgroundColor: ColorScheme.of(context).primaryFixed,
+      title: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image(image: NetworkImage(exp.companyLogo), width: 100),
+              SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(exp.role, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: ColorScheme.of(context).onPrimaryContainer), overflow: TextOverflow.fade,),
+                    Text(exp.companyName, style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+                    Text(exp.date),
+                    Text(exp.location)
+                  ],
+                ),
+              )
+            ],
+          ),
+      /*subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(exp.companyName, style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+          Text(exp.date),
+          Text(exp.location)
+        ],
+      ),
+      leading: Image(image: NetworkImage(exp.companyLogo)),*/
+      children: [
+        ...exp.description.map((s) => Text("• $s", style: TextStyle(fontSize: 15)))
+      ],
+    );
+  }
+}
+
+
+/* 
+Container(
       padding: EdgeInsets.all(8),
       width: double.infinity,
 
@@ -143,6 +182,5 @@ class _ExperienceCard extends StatelessWidget {
           ...exp.description.map((s) => Text("• $s", style: TextStyle(fontSize: 15)))
         ],
       ),
-    );
-  }
-}
+    ); 
+  */

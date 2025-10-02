@@ -1,3 +1,4 @@
+import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resume_app/domain/entities/project_model.dart';
@@ -13,7 +14,7 @@ class ProjectsPage extends StatefulWidget {
   State<ProjectsPage> createState() => _ProjectsPageState();
 }
 
-class _ProjectsPageState extends State<ProjectsPage> {
+class _ProjectsPageState extends State<ProjectsPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
@@ -57,23 +58,33 @@ class _ProjectsPageState extends State<ProjectsPage> {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.projectsTitle), //AppLocalizations.of(context)!.projectsTitle
       ),
-      body: BlocBuilder<ProjectsBloc, ProjectsState>(
-        builder: (context, state) {
-          final statusW = <UIStatus, Widget>{
-            UIStatus.error: Center(child: Text("ERROR")),
-            UIStatus.loading: Center(child: CircularProgressIndicator.adaptive()),
-            UIStatus.success: ListView.builder(
-              itemCount: state.projectList.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: _ProjectCard(project: state.projectList[index]),
-                );
-              },
-            )
-          };
-          return statusW[state.uiState.status] ?? Container();
-        },
+      body: AnimatedBackground(
+        vsync: this,
+        behaviour: RandomParticleBehaviour(
+          options: ParticleOptions(
+            spawnMinSpeed: 5,
+            spawnMaxSpeed: 20,
+            spawnMaxRadius: 50,
+            spawnMinRadius: 10,
+            baseColor: ColorScheme.of(context).primary,
+            particleCount: 20
+          )
+        ),
+        child: BlocBuilder<ProjectsBloc, ProjectsState>(
+          builder: (context, state) {
+            final statusW = <UIStatus, Widget>{
+              UIStatus.error: Center(child: Text("ERROR")),
+              UIStatus.loading: Center(child: CircularProgressIndicator.adaptive()),
+              UIStatus.success: ListView.builder(
+                itemCount: state.projectList.length,
+                itemBuilder: (context, index) {
+                  return _ProjectCard(project: state.projectList[index]);
+                },
+              )
+            };
+            return statusW[state.uiState.status] ?? Container();
+          },
+        ),
       )
     );
   }
@@ -105,10 +116,15 @@ class _ProjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(8),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: ColorScheme.of(context).secondary,
-        borderRadius: BorderRadius.circular(5)
+        color: ColorScheme.of(context).primaryFixed,
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(
+          color: ColorScheme.of(context).onPrimary,
+          width: 2
+        )
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -120,8 +136,14 @@ class _ProjectCard extends StatelessWidget {
             Image(image: NetworkImage(project.imageUrl)),
 
             if(project.projectUrl != null)
-            MaterialButton(
-              color: ColorScheme.of(context).onSurface,
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                backgroundColor: ColorScheme.of(context).secondary,
+                side: BorderSide(color: ColorScheme.of(context).onSecondary, width: 2), // borde
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                )
+              ),
               onPressed: () async {
                 final Uri url = Uri.parse(project.projectUrl!);
 
@@ -129,7 +151,7 @@ class _ProjectCard extends StatelessWidget {
                   throw Exception('Could not launch $url');
                 }
               },
-              child: Text('GitHub'),
+              child: Text('GitHub', style: TextStyle(color: ColorScheme.of(context).onSecondary),),
             )
           ],
         ),
