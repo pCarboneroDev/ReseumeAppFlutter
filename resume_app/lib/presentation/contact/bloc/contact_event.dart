@@ -1,8 +1,9 @@
 part of 'contact_bloc.dart';
 
-sealed class ContactEvent extends Equatable {
-  const ContactEvent();
+abstract class ContactEvent {}
 
-  @override
-  List<Object> get props => [];
+class LoadContactEvent extends ContactEvent {
+  final String lang;
+
+  LoadContactEvent(this.lang);
 }

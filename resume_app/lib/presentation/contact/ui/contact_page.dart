@@ -1,11 +1,26 @@
+import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resume_app/domain/entities/contact_model.dart';
 import 'package:resume_app/l10n/app_localizations.dart';
+import 'package:resume_app/presentation/contact/bloc/contact_bloc.dart';
+import 'package:resume_app/utils/ui_state.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-class ContactPage extends StatelessWidget {
+class ContactPage extends StatefulWidget {
+
+  @override
+  State<ContactPage> createState() => _ContactPageState();
+}
+
+class _ContactPageState extends State<ContactPage> with TickerProviderStateMixin {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    BlocProvider.of<ContactBloc>(context).add(LoadContactEvent(Localizations.localeOf(context).languageCode));
+  }
 
   final List<ContactModel> contactList = [
     ContactModel(
@@ -40,18 +55,43 @@ class ContactPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.contactTitle)
       ),
-      body: ListView.builder(
-        itemCount: contactList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _ContactCard(contact: contactList[index],),
-          );
-        },
+      body: AnimatedBackground(
+        vsync: this,
+        behaviour: RandomParticleBehaviour(
+          options: ParticleOptions(
+            spawnMinSpeed: 5,
+            spawnMaxSpeed: 20,
+            spawnMaxRadius: 50,
+            spawnMinRadius: 10,
+            baseColor: ColorScheme.of(context).primary,
+            particleCount: 20
+          )
+        ),
+
+        child: BlocBuilder<ContactBloc, ContactState>(
+          builder: (context, state) {
+            final status = <UIStatus, Widget>{
+              UIStatus.error: Center(child: Text("ERROR")),
+              UIStatus.idle: Center(child: Text("IDLE")),
+              UIStatus.loading: Center(child: CircularProgressIndicator.adaptive()),
+              UIStatus.success: ListView.builder(
+                itemCount: state.contactList.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: _ContactCard(contact: state.contactList[index],),
+                  );
+                },
+              )
+            };
+            return status[state.uiState.status] ?? Container();
+          },
+        )
       )
    );
   }
 }
+
 
 class _ContactCard extends StatelessWidget {
   final ContactModel contact;

@@ -5,6 +5,7 @@ import 'package:resume_app/di/dependency_injection.dart';
 import 'package:resume_app/domain/entities/theme_entity.dart';
 import 'package:resume_app/l10n/app_localizations.dart';
 import 'package:resume_app/presentation/apptheme/app_theme.dart';
+import 'package:resume_app/presentation/contact/bloc/contact_bloc.dart';
 import 'package:resume_app/presentation/experience/bloc/experience_bloc.dart';
 import 'package:resume_app/presentation/mainpage/ui/mainpage.dart';
 import 'package:resume_app/presentation/projects/bloc/projects_bloc.dart';
@@ -24,7 +25,8 @@ void main() async {
         BlocProvider(
           create: (context) => getIt<ProjectsBloc>(),
         ),
-        BlocProvider(create: (context) => getIt<ExperienceBloc>(),)
+        BlocProvider(create: (context) => getIt<ExperienceBloc>()),
+        BlocProvider(create: (context) => getIt<ContactBloc>())
       ],
       child: MyApp(),
     )
