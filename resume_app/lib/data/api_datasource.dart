@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
+import 'package:resume_app/data/entities/about_entity.dart';
 import 'package:resume_app/data/entities/contact_entity.dart';
 import 'package:resume_app/data/entities/experience_entity.dart';
 import 'package:resume_app/data/entities/project_entity.dart';
+import 'package:resume_app/domain/entities/about_model.dart';
 import 'package:resume_app/domain/entities/contact_model.dart';
 import 'package:resume_app/domain/entities/experience_model.dart';
 import 'package:resume_app/domain/entities/project_model.dart';
@@ -14,6 +16,7 @@ class ApiDatasource {
   static final String projectsEndpoint = 'projects';  
   static final String experienceEndpoint = 'experience';
   static final String contactEndpoint = 'contact';
+  static final String aboutEndpoint = 'about';
 
 
   static Future<Either<Failure, List<ProjectModel>>> getAllProjects(lang) async {
@@ -86,6 +89,30 @@ class ApiDatasource {
             .map((item) => ContactEntity.fromMap(item).toModel())
             .toList();
         return Right(experience);
+      }
+      else {
+        return Left(DataSourceException("Error: ${response.statusCode}"));
+      }
+    }
+    catch(error){
+      return Left(DataSourceException(error.toString()));
+    } 
+  }
+
+
+  static Future<Either<Failure, AboutModel>> getAbout(lang) async {
+    try{
+      final uri = Uri.http(apiUrl, aboutEndpoint, {
+        "lang": lang
+      });
+
+      var response = await http.get(uri); 
+
+      if (response.statusCode == 200) {
+        var decodedJson = json.decode(response.body);
+
+        final about = AboutEntity.fromMap(decodedJson).toModel();
+        return Right(about);
       }
       else {
         return Left(DataSourceException("Error: ${response.statusCode}"));

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ImageAndName extends StatelessWidget {
+  final String name;
+  final String image;
+
+  const ImageAndName({super.key, required this.name, required this.image});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,11 +16,11 @@ class ImageAndName extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircleAvatar(
-            foregroundImage: NetworkImage('https://pcarbonerodev.github.io/Carbonero-WebPortfolio/assets/images/profile.png'),
+            foregroundImage: NetworkImage(image),
             radius: 75,
           ),
           SizedBox(width: 10),
-          Expanded(child: Text("Pablo Carbonero Almellones", style: TextStyle(fontSize: 30, overflow: TextOverflow.visible)))
+          Expanded(child: Text(name, style: TextStyle(fontSize: 30, overflow: TextOverflow.visible)))
         ],
       ),
     );
