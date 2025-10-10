@@ -43,28 +43,50 @@ class _SettingsPageState extends State<SettingsPage> {
               child: Column(
                 children: [
                   // theme button
-                  MaterialButton(
-                    shape: CircleBorder(),
-                    height: 100,
-                    color: ColorScheme.of(context).primaryContainer,
-                    onPressed: () {              
-                      settingsBloc.add(ToggleThemeEvent());
-                    },
-                    child: Icon((state.themeEntity.theme == ThemeType.dark) ? FontAwesomeIcons.sun : FontAwesomeIcons.moon),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(8),
+                    child: Row(
+                      children: [
+                        Text("App theme: ${state.themeEntity.theme.name}", style: TextStyle(fontSize: 18)),
+                        Spacer(),
+                        MaterialButton(
+                          shape: StadiumBorder(),
+                          //height: 50,
+                          color: ColorScheme.of(context).primaryContainer,
+                          onPressed: () {              
+                            settingsBloc.add(ToggleThemeEvent());
+                          },
+                          child: Icon((state.themeEntity.theme == ThemeType.dark) ? FontAwesomeIcons.sun : FontAwesomeIcons.moon),
+                        ),
+                      ],
+                    ),
                   ),
 
+                  Divider(),
+
                   // lang dropdown
-                  DropdownButton(
-                    value: state.locale,
-                    items: [
-                      DropdownMenuItem(value: Locale('en'), child: Text('English')),
-                      DropdownMenuItem(value: Locale('es'), child: Text('Español'))
-                    ], 
-                    onChanged: (value) {
-                      if (value != null){
-                        settingsBloc.add(ChangeLocaleEvent(value));
-                      }
-                    },
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(8),
+                    child: Row(
+                      children: [
+                        Text("App language:", style: TextStyle(fontSize: 18)),
+                        Spacer(),
+                        DropdownButton(
+                          value: state.locale,
+                          items: [
+                            DropdownMenuItem(value: Locale('en'), child: Text('English')),
+                            DropdownMenuItem(value: Locale('es'), child: Text('Español'))
+                          ], 
+                          onChanged: (value) {
+                            if (value != null){
+                              settingsBloc.add(ChangeLocaleEvent(value));
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   )
                 ],
               )

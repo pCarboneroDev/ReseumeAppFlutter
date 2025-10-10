@@ -20,24 +20,11 @@ class FrontInfoCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(title, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
-
-            /*Icon(
+            Icon(
               icon,
               size: 200,
-            ),*/
-            
-            
-            Row(
-              children: [
-                Spacer(),
-                Image(
-                  width: 50,
-                  image: AssetImage("assets/images/slide.gif")
-                )
-              ],
-            )
-
+            ),
+            Text(title, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           ],
         ),
       )
