@@ -22,4 +22,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsTitle => 'Ajustes';
+
+  @override
+  String get modalButton => '¡Lee sobre mí!';
+
+  @override
+  String get skillsTitle => 'Mira mis conocimientos';
+
+  @override
+  String get skillsSubtitle => 'Pulsa para ver mis habilidades';
+
+  @override
+  String get salutation => 'Hola, soy';
+
+  @override
+  String get languages => 'Lenguajes';
+
+  @override
+  String get other => 'Otro';
+
+  @override
+  String get appTheme => 'Tema de la app';
+
+  @override
+  String get appLanguage => 'Idioma de la app';
+
+  @override
+  String get dark => 'Oscuro';
+
+  @override
+  String get light => 'Claro';
 }

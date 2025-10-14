@@ -19,5 +19,45 @@
   "settingsTitle": "Settings",
   "@settingsTitle": {
     "type": "text"
+  },
+  "modalButton": "Read something about me!",
+  "@modalButton": {
+    "type": "text"
+  },
+  "skillsTitle": "Know more about my skills",
+  "@skillsTitle": {
+    "type": "text"
+  },
+  "skillsSubtitle": "Tap to see details about my skills",
+  "@skillsSubtitle  ": {
+    "type": "text"
+  },
+  "salutation": "Hello, I am",
+  "@salutation  ": {
+    "type": "text"
+  },
+  "languages": "Languages",
+  "@languages  ": {
+    "type": "text"
+  },
+  "other": "Other",
+  "@other  ": {
+    "type": "text"
+  },
+  "appTheme": "App theme",
+  "@appTheme  ": {
+    "type": "text"
+  },
+  "appLanguage": "App language",
+  "@appLanguage  ": {
+    "type": "text"
+  },
+  "dark": "Dark",
+  "@dark  ": {
+    "type": "text"
+  },
+  "light": "Light",
+  "@light  ": {
+    "type": "text"
   }
 }

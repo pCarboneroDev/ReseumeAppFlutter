@@ -48,7 +48,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     padding: EdgeInsets.all(8),
                     child: Row(
                       children: [
-                        Text("App theme: ${state.themeEntity.theme.name}", style: TextStyle(fontSize: 18)),
+                        Text("${AppLocalizations.of(context)!.appTheme}: ${(state.themeEntity.theme == ThemeType.dark ? AppLocalizations.of(context)!.dark : AppLocalizations.of(context)!.light)}", style: TextStyle(fontSize: 18)),
                         Spacer(),
                         MaterialButton(
                           shape: StadiumBorder(),
@@ -71,7 +71,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     padding: EdgeInsets.all(8),
                     child: Row(
                       children: [
-                        Text("App language:", style: TextStyle(fontSize: 18)),
+                        Text("${AppLocalizations.of(context)!.appLanguage}:", style: TextStyle(fontSize: 18)),
                         Spacer(),
                         DropdownButton(
                           value: state.locale,

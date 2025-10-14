@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume_app/l10n/app_localizations.dart';
 
 class AboutMeModal extends StatelessWidget {
 
@@ -16,7 +17,7 @@ class AboutMeModal extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Hello, I am", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: ColorScheme.of(context).primary)),
+            Text(AppLocalizations.of(context)!.salutation, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: ColorScheme.of(context).primary)),
             Text(name, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
             Text(role, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: ColorScheme.of(context).primary)),
             SizedBox(height: 20),

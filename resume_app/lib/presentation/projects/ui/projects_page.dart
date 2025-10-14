@@ -90,20 +90,6 @@ class _ProjectsPageState extends State<ProjectsPage> with TickerProviderStateMix
   }
 }
 
-/*
-
-ListView.builder(
-        itemCount: projectList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _ProjectCard(project: projectList[index]),
-          );
-        },
-      )
-
- */
-
 class _ProjectCard extends StatelessWidget {
 
   final ProjectModel project;
@@ -132,8 +118,12 @@ class _ProjectCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(project.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            Divider(),
             Text(project.description),
+            SizedBox(height: 5),
             Image(image: NetworkImage(project.imageUrl)),
+
+            SizedBox(height: 5),
 
             if(project.projectUrl != null)
             OutlinedButton(

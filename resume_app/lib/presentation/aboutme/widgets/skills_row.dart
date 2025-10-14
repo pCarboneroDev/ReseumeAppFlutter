@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:resume_app/l10n/app_localizations.dart';
 
 class SkillsRow extends StatelessWidget {
   final List<String> selected;
   final List<String> languages;
   final List<String> frameworks;
   final List<String> other;
+  final ScrollController controller;
 
   final Function(Set<List<String>>) method;
 
-  const SkillsRow({required this.selected, required this.languages, required this.frameworks, required this.other, required this.method}); 
+  const SkillsRow({super.key, required this.selected, required this.languages, required this.frameworks, required this.other, required this.method, required this.controller}); 
   
   @override
   Widget build(BuildContext context) {
-    
+
     return Container(
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -28,7 +30,7 @@ class SkillsRow extends StatelessWidget {
               segments: [
                 ButtonSegment(
                   value: languages,
-                  label: Text("Languages", overflow: TextOverflow.ellipsis, softWrap: false)
+                  label: Text(AppLocalizations.of(context)!.languages, overflow: TextOverflow.ellipsis, softWrap: false)
                 ),
                 ButtonSegment(
                   value: frameworks,
@@ -36,12 +38,13 @@ class SkillsRow extends StatelessWidget {
                 ),
                 ButtonSegment(
                   value: other,
-                  label: Text("Other", overflow: TextOverflow.ellipsis, softWrap: false)
+                  label: Text(AppLocalizations.of(context)!.other, overflow: TextOverflow.ellipsis, softWrap: false)
                 )
               ], 
               selected: <List<String>>{selected},
               onSelectionChanged: (newS) {
                 method(newS);
+                controller.animateTo(0, duration: Duration(milliseconds: 500), curve: Curves.fastOutSlowIn);
               },
             ),
           ),
@@ -49,6 +52,7 @@ class SkillsRow extends StatelessWidget {
           SizedBox(
             height: 70,
             child: ListView.builder(
+              controller: controller,
               scrollDirection: Axis.horizontal,
               itemCount: selected.length,
               itemBuilder: (context, index) {

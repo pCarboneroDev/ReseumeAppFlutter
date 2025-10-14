@@ -36,6 +36,8 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
 
+    final ScrollController controller = ScrollController();
+
     void callChangeListEvent(Set<List<String>> selected){
       BlocProvider.of<AboutMeBloc>(context).add(ChangeListEvent(selected.first));
     }
@@ -90,7 +92,7 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
                           );
                         },
                         shape: StadiumBorder(),
-                        child: Text("Read something about me!"),
+                        child: Text(AppLocalizations.of(context)!.modalButton),
                       ),
 
                       SizedBox(height: 20),
@@ -101,6 +103,7 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
                         frameworks: state.about.frameworks,
                         other: state.about.other,
                         method: callChangeListEvent,
+                        controller: controller,
                       ),
 
                       SizedBox(height: 20),
@@ -118,33 +121,3 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
    );
   }
 }
-
-
-
-                /*GestureFlipCard(
-                  frontWidget: FrontInfoCard(
-                    title: "Get to know me",
-                    icon: FontAwesomeIcons.gamepad,
-                  ), 
-                  backWidget: BackInfoCard(
-                    firstLine: "⚔🐲👾",
-                    secondLine: "My favourite videogames are Pokemon and TES saga.",
-                    thirdLine: "Sit sit consequat reprehenderit eu dolor nostrud officia sunt eiusmod.",
-                  ), 
-                  controller: controller
-                ),
-
-                SizedBox(height: 10),
-
-                GestureFlipCard(
-                  frontWidget: FrontInfoCard(
-                    title: "Music taste",
-                    icon: FontAwesomeIcons.guitar,
-                  ), 
-                  backWidget: BackInfoCard(
-                    firstLine: "🎸🎤🤘",
-                    secondLine: "Self-taught guitarist and gutural singer. I even played in a band that got to play live once before disbanding",
-                    thirdLine: "“El código tiene ritmo, igual que una buena canción.”",
-                  ), 
-                  controller: controller
-                )*/

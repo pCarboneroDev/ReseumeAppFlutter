@@ -4,5 +4,15 @@
     "aboutTitle": "Sobre mí",
     "experienceTitle": "Experiencia",
     "contactTitle": "Contacto",
-    "settingsTitle": "Ajustes"
+    "settingsTitle": "Ajustes",
+    "modalButton": "¡Lee sobre mí!",
+    "skillsTitle": "Mira mis conocimientos",
+    "skillsSubtitle": "Pulsa para ver mis habilidades",
+    "salutation": "Hola, soy",
+    "languages": "Lenguajes",
+    "other": "Otro",
+    "appTheme": "Tema de la app",
+    "appLanguage": "Idioma de la app",
+    "dark": "Oscuro",
+    "light": "Claro"
 }

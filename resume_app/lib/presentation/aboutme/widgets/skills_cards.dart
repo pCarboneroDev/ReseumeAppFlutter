@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:resume_app/domain/entities/skill_model.dart';
+import 'package:resume_app/l10n/app_localizations.dart';
 
 class SkillsCards extends StatelessWidget {
   const SkillsCards({
@@ -13,8 +14,8 @@ class SkillsCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: Text("Know more about my skills", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-      subtitle: Text("Tap to see details about my skills"),
+      title: Text(AppLocalizations.of(context)!.skillsTitle, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+      subtitle: Text(AppLocalizations.of(context)!.skillsSubtitle),
       children: [
         StaggeredGrid.count(
           crossAxisCount: 2,
