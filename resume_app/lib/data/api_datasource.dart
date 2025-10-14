@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:resume_app/domain/exceptions/failure.dart';
 
 class ApiDatasource {
-  static final String apiUrl = "10.0.2.2:5050"; 
+  static final String apiUrl = "portfolio-backend-jjgf.onrender.com";//"10.0.2.2:5050"; 
   static final String projectsEndpoint = 'projects';  
   static final String experienceEndpoint = 'experience';
   static final String contactEndpoint = 'contact';
@@ -21,7 +21,7 @@ class ApiDatasource {
 
   static Future<Either<Failure, List<ProjectModel>>> getAllProjects(lang) async {
     try {
-      final uri = Uri.http(apiUrl, projectsEndpoint, {
+      final uri = Uri.https(apiUrl, projectsEndpoint, {
         "lang": lang
       });
 
@@ -48,7 +48,7 @@ class ApiDatasource {
 
   static Future<Either<Failure, List<ExperienceModel>>> getAllExperience(lang) async {
     try{
-      final uri = Uri.http(apiUrl, experienceEndpoint, {
+      final uri = Uri.https(apiUrl, experienceEndpoint, {
         "lang": lang
       });
 
@@ -76,7 +76,7 @@ class ApiDatasource {
 
   static Future<Either<Failure, List<ContactModel>>> getAllContacts(lang) async {
     try{
-      final uri = Uri.http(apiUrl, contactEndpoint, {
+      final uri = Uri.https(apiUrl, contactEndpoint, {
         "lang": lang
       });
 
@@ -102,7 +102,7 @@ class ApiDatasource {
 
   static Future<Either<Failure, AboutModel>> getAbout(lang) async {
     try{
-      final uri = Uri.http(apiUrl, aboutEndpoint, {
+      final uri = Uri.https(apiUrl, aboutEndpoint, {
         "lang": lang
       });
 
