@@ -1,12 +1,11 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:resume_app/domain/entities/contact_model.dart';
 import 'package:resume_app/l10n/app_localizations.dart';
 import 'package:resume_app/presentation/contact/bloc/contact_bloc.dart';
+import 'package:resume_app/presentation/contact/ui/widgets/contact_card.dart';
 import 'package:resume_app/utils/ui_state.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 
 class ContactPage extends StatefulWidget {
@@ -79,7 +78,7 @@ class _ContactPageState extends State<ContactPage> with TickerProviderStateMixin
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: _ContactCard(contact: state.contactList[index],),
+                    child: ContactCard(contact: state.contactList[index],),
                   );
                 },
               )
@@ -93,53 +92,3 @@ class _ContactPageState extends State<ContactPage> with TickerProviderStateMixin
 }
 
 
-class _ContactCard extends StatelessWidget {
-  final ContactModel contact;
-
-  const _ContactCard({
-    required this.contact,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        final Uri url = Uri.parse(contact.targetUrl);
-
-        if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-          throw Exception('Could not launch $url');
-        }
-      },
-
-
-      child: Container(
-        width: double.infinity,
-        height: 100,
-        decoration: BoxDecoration(
-          color: ColorScheme.of(context).secondary,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: ColorScheme.of(context).onSurface, width: 2)
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Image(image: NetworkImage(contact.imageUrl)),
-              Spacer(),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(contact.contactName, style: TextStyle(color: ColorScheme.of(context).onSecondary, fontSize: 20, fontWeight: FontWeight.bold)),
-                  Text(contact.contactDesc, style: TextStyle(color: ColorScheme.of(context).onSecondary))
-                ],
-              ),
-              Spacer(),
-              Icon(FontAwesomeIcons.arrowUpRightFromSquare)
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

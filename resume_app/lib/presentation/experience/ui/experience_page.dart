@@ -126,8 +126,8 @@ class _ExperienceCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(exp.role, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: ColorScheme.of(context).onPrimaryContainer), overflow: TextOverflow.fade),
-                      Text(exp.companyName, style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+                      Text(exp.role, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: ColorScheme.of(context).onSurface), overflow: TextOverflow.fade),
+                      Text(exp.companyName, style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: ColorScheme.of(context).primary)),
                       Text(exp.date),
                       Text(exp.location)
                     ],

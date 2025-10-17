@@ -108,7 +108,7 @@ class _ProjectCard extends StatelessWidget {
         color: ColorScheme.of(context).primaryFixed,
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
-          color: ColorScheme.of(context).onPrimary,
+          color: ColorScheme.of(context).onSurface,
           width: 2
         )
       ),

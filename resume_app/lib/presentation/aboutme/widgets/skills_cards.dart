@@ -28,7 +28,7 @@ class SkillsCards extends StatelessWidget {
                 margin: EdgeInsets.all(5),
                 width: double.infinity,
                 child: Card(
-                  color: ColorScheme.of(context).onSurface,
+                  color: ColorScheme.of(context).onPrimary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
