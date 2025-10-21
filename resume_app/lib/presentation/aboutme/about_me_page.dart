@@ -2,6 +2,7 @@ import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resume_app/l10n/app_localizations.dart';
+import 'package:resume_app/presentation/Widgets/loading_error.dart';
 import 'package:resume_app/presentation/aboutme/bloc/about_me_bloc.dart';
 import 'package:resume_app/presentation/aboutme/widgets/about_me_modal.dart';
 import 'package:resume_app/presentation/aboutme/widgets/image_and_name.dart';
@@ -21,16 +22,12 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    load();
+  }
+
+  void load(){
     BlocProvider.of<AboutMeBloc>(context).add(LoadAboutEvent(Localizations.localeOf(context).languageCode));
   }
-  
-  final String presentation = '''
-    I am a Software Developer specialised in Android and cross-platform app development, with expertise in Flutter, Jetpack Compose, and .NET frameworks. Experienced with both front-end and back-end sides of an application. Additionally, I have extensive knowledge of a wide range of programming languages and technologies, enabling me to work in nearly all areas of software development.
-    ''';
-
-  final List<String> languages = ["Kotlin, Dart, C#, Java, JavaScript, TypeScript, Python"];
-  final List<String> frameworks = [".NET, Flutter, Jetpack Compose, Angular"];
-  final List<String> skills = ["MVVM, MVC, Clean Architecture, Hexagonal Architecture, Railway Oriented Programming"];
 
 
   @override
@@ -41,6 +38,7 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
     void callChangeListEvent(Set<List<String>> selected){
       BlocProvider.of<AboutMeBloc>(context).add(ChangeListEvent(selected.first));
     }
+    
 
     return Scaffold(
       appBar: AppBar(
@@ -62,9 +60,33 @@ class _AboutMePageState extends State<AboutMePage> with TickerProviderStateMixin
         child: BlocBuilder<AboutMeBloc, AboutMeState>(
           builder: (context, state) {
             final status = <UIStatus, Widget>{
-              UIStatus.error: Center(child: Text("ERROR")),
+              UIStatus.error: Center(child: LoadingError(reload: load)),
               UIStatus.idle: Center(child: Text("IDLE")),
-              UIStatus.loading: Center(child: CircularProgressIndicator.adaptive()),
+              UIStatus.loading: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator.adaptive(),
+
+                    Padding(
+                      padding: EdgeInsetsGeometry.only(top: 15),
+                      child: AnimatedSlide(
+                        offset: state.showTimerText ? Offset(0, 0) : Offset(0, 0.5),
+                        duration: const Duration(milliseconds: 2000),
+                        curve: Curves.easeOut,
+                        child: AnimatedOpacity(
+                          opacity: state.showTimerText ? 1.0 : 0.0,
+                          duration: const Duration(milliseconds: 2000),
+                          child: Text(
+                            "It may take a couple of minutes to initialize the server",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ),
               UIStatus.success: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),

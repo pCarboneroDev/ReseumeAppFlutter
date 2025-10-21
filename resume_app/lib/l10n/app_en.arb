@@ -59,5 +59,13 @@
   "light": "Light",
   "@light  ": {
     "type": "text"
+  },
+  "errorTitle": "Ups... Something went wrong",
+  "@errorTitle  ": {
+    "type": "text"
+  },
+  "errorText": "Check your internet connection or wait a couple of minutes. Maybe the server is initializing and is taking longer than expected!",
+  "@errorText  ": {
+    "type": "text"
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:resume_app/domain/entities/about_model.dart';
@@ -8,6 +10,7 @@ part 'about_me_state.dart';
 
 class AboutMeBloc extends Bloc<AboutMeEvent, AboutMeState> {
   final GetAboutUsecase getAboutUsecase;
+  Timer? _loadingTimer;
 
   AboutMeBloc(
     this.getAboutUsecase
@@ -19,16 +22,39 @@ class AboutMeBloc extends Bloc<AboutMeEvent, AboutMeState> {
     on<LoadAboutEvent>((event, emit) async {
       emit(state.copyWith(uiState: UIState.loading()));
 
+      _startTimer();
+
       var result = await getAboutUsecase.call(event.lang);
+
+      _stopTimer();
 
       result.fold(
         (fail) => emit(state.copyWith(uiState: UIState.error(fail.message))),
-        (about) => emit(state.copyWith(uiState: UIState.success(), about: about, selectedList: about.languages))
+        (about) => emit(state.copyWith(uiState: UIState.success(), about: about, selectedList: about.languages, showTimerText: false))
       );
     });
 
     on<ChangeListEvent>((event, emit) {
       emit(state.copyWith(selectedList: event.newList));
     });
+
+    on<ShowTimerTextEvent>((event, emit) {
+      emit(state.copyWith(showTimerText: true));
+    });
+  }
+
+  void _startTimer() {
+    _loadingTimer?.cancel();
+    _loadingTimer = Timer(const Duration(seconds: 5), handleTimeout);
+  }
+
+  void _stopTimer() {
+    _loadingTimer?.cancel();  
+    _loadingTimer = null;
+  }
+
+
+  void handleTimeout() {  
+    add(ShowTimerTextEvent());
   }
 }

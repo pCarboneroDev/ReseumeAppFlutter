@@ -35,14 +35,15 @@ class ContactCard extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              Image(image: NetworkImage(contact.imageUrl)),
+              //Image(image: NetworkImage(contact.imageUrl)),
+              FadeInImage.assetNetwork(placeholder: 'assets/images/trail_loading.gif', image: contact.imageUrl),
               Spacer(),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(contact.contactName, style: TextStyle(color: ColorScheme.of(context).onSecondary, fontSize: 20, fontWeight: FontWeight.bold)),
-                  Text(contact.contactDesc, style: TextStyle(color: ColorScheme.of(context).onSecondary))
+                  Text(contact.contactName, style: TextStyle(color: ColorScheme.of(context).onSurface, fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text(contact.contactDesc, style: TextStyle(color: ColorScheme.of(context).onSurface))
                 ],
               ),
               Spacer(),

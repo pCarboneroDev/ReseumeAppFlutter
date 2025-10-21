@@ -52,4 +52,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get light => 'Claro';
+
+  @override
+  String get errorTitle => 'Vaya... Algo ha salido mal';
+
+  @override
+  String get errorText =>
+      'Comprueba tu conexión o espera un par de minutos. ¡Puede que el servidor esté iniciandose y esté tardando más de lo esperado!';
 }

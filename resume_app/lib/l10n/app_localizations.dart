@@ -187,6 +187,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Light'**
   String get light;
+
+  /// No description provided for @errorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ups... Something went wrong'**
+  String get errorTitle;
+
+  /// No description provided for @errorText.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your internet connection or wait a couple of minutes. Maybe the server is initializing and is taking longer than expected!'**
+  String get errorText;
 }
 
 class _AppLocalizationsDelegate

@@ -12,3 +12,5 @@ class ChangeListEvent extends AboutMeEvent{
   final List<String> newList;
   ChangeListEvent(this.newList);
 }
+
+class ShowTimerTextEvent extends AboutMeEvent{}

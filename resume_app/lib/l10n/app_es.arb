@@ -14,5 +14,7 @@
     "appTheme": "Tema de la app",
     "appLanguage": "Idioma de la app",
     "dark": "Oscuro",
-    "light": "Claro"
+    "light": "Claro",
+    "errorTitle": "Vaya... Algo ha salido mal",
+    "errorText": "Comprueba tu conexión o espera un par de minutos. ¡Puede que el servidor esté iniciandose y esté tardando más de lo esperado!"
 }

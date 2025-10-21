@@ -52,4 +52,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get light => 'Light';
+
+  @override
+  String get errorTitle => 'Ups... Something went wrong';
+
+  @override
+  String get errorText =>
+      'Check your internet connection or wait a couple of minutes. Maybe the server is initializing and is taking longer than expected!';
 }
