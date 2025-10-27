@@ -11,7 +11,7 @@ Short app to show my portfolio. A creative way to show my coding skills and my w
 ---
 
 # 👨‍💻 Link to the Back-end.
-- [REPOSITORY](https://react.dev/) 
+- [REPOSITORY](https://github.com/pCarboneroDev/portfolio-backend) 
 ---
 
 ## ⚙️ Tecnologías utilizadas
