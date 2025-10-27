@@ -6,7 +6,7 @@ Short app to show my portfolio. A creative way to show my coding skills and my w
 
 ## 🖥️ Demo
 
-![Demo de la app](./resume_app_demo.mp4)
+![App Demo](https://www.youtube.com/watch?v=DfQXZhrv0i0)
 
 ---
 
